@@ -24,3 +24,12 @@ TEST(Normal_Boundary_Value_Test, False) {
 	EXPECT_EQ("Not a triangle", isTriangle(100, 200, 100));
 	EXPECT_EQ("Not a triangle", isTriangle(200, 100, 100));
 }
+
+TEST(Robust_Boundary_Value_Test, False) {
+    EXPECT_EQ("Value of c is not in the range of permitted values", isTriangle(100, 100, 0));
+	EXPECT_EQ("Value of c is not in the range of permitted values", isTriangle(100, 100, 201));
+    EXPECT_EQ("Value of b is not in the range of permitted values", isTriangle(100, 0, 100));
+    EXPECT_EQ("Value of b is not in the range of permitted values", isTriangle(100, 201, 100));
+    EXPECT_EQ("Value of a is not in the range of permitted values", isTriangle(0, 100, 100));
+    EXPECT_EQ("Value of a is not in the range of permitted values", isTriangle(201, 100, 100));
+}
