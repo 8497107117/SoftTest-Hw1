@@ -20,7 +20,7 @@ TEST(Normal_Boundary_Value_Test, True) {
 }
 
 TEST(Normal_Boundary_Value_Test, False) {
-	EXPECT_EQ("Not a isTriangle", isTriangle(100, 100, 200));
-	EXPECT_EQ("Not a isTriangle", isTriangle(100, 200, 100));
-	EXPECT_EQ("Not a isTriangle", isTriangle(200, 100, 100));
+	EXPECT_EQ("Not a triangle", isTriangle(100, 100, 200));
+	EXPECT_EQ("Not a triangle", isTriangle(100, 200, 100));
+	EXPECT_EQ("Not a triangle", isTriangle(200, 100, 100));
 }
