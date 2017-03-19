@@ -171,3 +171,36 @@ TEST(Worst_Case_Boundary_Value_Test, max_a) {
 	EXPECT_EQ("Isosceles", isTriangle(200, 200, 199));
 	EXPECT_EQ("Equilateral", isTriangle(200, 200, 200));
 }
+
+TEST(Equivalence_Class, normal) {
+	EXPECT_EQ("Equilateral", isTriangle(5, 5, 5));
+	EXPECT_EQ("Isosceles", isTriangle(2, 2, 3));
+	EXPECT_EQ("Scalene", isTriangle(3, 4, 5));
+	EXPECT_EQ("Not a triangle", isTriangle(4, 1, 2));
+}
+
+TEST(Equivalence_Class, weak_robust) {
+    EXPECT_EQ("Value of a is not in the range of permitted values", isTriangle(-1, 5, 5));
+    EXPECT_EQ("Value of b is not in the range of permitted values", isTriangle(5, -1, 5));
+    EXPECT_EQ("Value of c is not in the range of permitted values", isTriangle(5, 5, -1));
+    EXPECT_EQ("Value of a is not in the range of permitted values", isTriangle(201, 5, 5));
+    EXPECT_EQ("Value of b is not in the range of permitted values", isTriangle(5, 201, 5));
+    EXPECT_EQ("Value of c is not in the range of permitted values", isTriangle(5, 5, 201));
+}
+
+TEST(Equivalence_Class, strong_robust) {
+    EXPECT_EQ("Value of a is not in the range of permitted values", isTriangle(-1, 5, 5));
+    EXPECT_EQ("Value of b is not in the range of permitted values", isTriangle(5, -1, 5));
+    EXPECT_EQ("Value of c is not in the range of permitted values", isTriangle(5, 5, -1));
+    EXPECT_EQ("Value of a,b is not in the range of permitted values", isTriangle(-1, -1, 5));
+    EXPECT_EQ("Value of b,c is not in the range of permitted values", isTriangle(5, -1, -1));
+    EXPECT_EQ("Value of a,c is not in the range of permitted values", isTriangle(-1, 5, -1));
+    EXPECT_EQ("Value of a,b,c is not in the range of permitted values", isTriangle(-1, -1, -1));
+    EXPECT_EQ("Value of a is not in the range of permitted values", isTriangle(201, 5, 5));
+    EXPECT_EQ("Value of b is not in the range of permitted values", isTriangle(5, 201, 5));
+    EXPECT_EQ("Value of c is not in the range of permitted values", isTriangle(5, 5, 201));
+    EXPECT_EQ("Value of a,b is not in the range of permitted values", isTriangle(201, 201, 5));
+    EXPECT_EQ("Value of b,c is not in the range of permitted values", isTriangle(5, 201, 201));
+    EXPECT_EQ("Value of a,c is not in the range of permitted values", isTriangle(201, 5, 201));
+    EXPECT_EQ("Value of a,b,c is not in the range of permitted values", isTriangle(201, 201, 201));
+}
