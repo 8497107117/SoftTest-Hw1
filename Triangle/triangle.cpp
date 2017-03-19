@@ -16,6 +16,8 @@ string isTriangle(int a, int b, int c) {
         s = "Equilateral";
     else if(a == b || b == c || c == a)
         s = "Isosceles";
+    else
+        s = "Scalene";
 
     return s;
 }
