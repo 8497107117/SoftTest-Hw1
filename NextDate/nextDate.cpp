@@ -6,23 +6,14 @@ bool leapyear(int y) {
 
 string nextDate(int d, int m, int y) {
     string s = "";
-    bool rangeD = true, rangeM = true, rangeY = true;
     int nd, nm, ny;
 
-    if(y < 1812 || y > 2012)
-        rangeY = false;
-    if(m < 1 || m > 12)
-        rangeM = false;
-    if(!rangeY)
-        return "year not in range: 1812~2012";
-    if(!rangeM)
-        return "month not in range: 1~12";
+    if(y < 1812 || y > 2012 || m < 1 || m > 12)
+        return "not in valid date";
 
     if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12 ) {
         if(d < 1 || d > 31)
-            rangeD = false;
-        if(!rangeD)
-            return "day not in range: 1~31";
+            return "not in valid date";
 
         if(d == 31) {
             nd = 1;
@@ -37,9 +28,7 @@ string nextDate(int d, int m, int y) {
     }
     else if(m != 2) {
         if(d < 1 || d > 30)
-            rangeD = false;
-        if(!rangeD)
-            return "day not in range: 1~30";
+            return "not in valid date";
 
         if(d == 30) {
             nd = 1;
@@ -55,9 +44,7 @@ string nextDate(int d, int m, int y) {
     else {
         bool leap = leapyear(y);
         if(d < 1 || (d > 28 && !leap) || (d > 29 && leap))
-            rangeD = false;
-        if(!rangeD)
-            return "day not in range: 1~28or29";
+            return "not in valid date";
 
         if((d == 28 && !leap) || (d == 29 && leap)) {
             nd = 1;
