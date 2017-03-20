@@ -38,27 +38,27 @@ TEST(Normal_Boundary_Value_Test, bound_in_day) {
 }
 
 TEST(Robust_Boundary_Value_Test, bound_in_year) {
-    EXPECT_EQ("not in valid date", nextDate(15, 6, 1811));
-    EXPECT_EQ("not in valid date", nextDate(15, 6, 2013));
+    EXPECT_EQ("invalid input date", nextDate(15, 6, 1811));
+    EXPECT_EQ("invalid input date", nextDate(15, 6, 2013));
 }
 
 TEST(Robust_Boundary_Value_Test, bound_in_month) {
-    EXPECT_EQ("not in valid date", nextDate(15, 0, 1900));
-    EXPECT_EQ("not in valid date", nextDate(15, 13, 1900));
+    EXPECT_EQ("invalid input date", nextDate(15, 0, 1900));
+    EXPECT_EQ("invalid input date", nextDate(15, 13, 1900));
 }
 
 TEST(Robust_Boundary_Value_Test, bound_in_day) {
     //  30 days per month
-    EXPECT_EQ("not in valid date", nextDate(0, 6, 1900));
-    EXPECT_EQ("not in valid date", nextDate(31, 6, 1900));
+    EXPECT_EQ("invalid input date", nextDate(0, 6, 1900));
+    EXPECT_EQ("invalid input date", nextDate(31, 6, 1900));
     //  31 days per month
-    EXPECT_EQ("not in valid date", nextDate(0, 7, 1900));
-    EXPECT_EQ("not in valid date", nextDate(32, 7, 1900));
+    EXPECT_EQ("invalid input date", nextDate(0, 7, 1900));
+    EXPECT_EQ("invalid input date", nextDate(32, 7, 1900));
     //  28 or 29 dayse per month
-    EXPECT_EQ("not in valid date", nextDate(0, 2, 1900));
-    EXPECT_EQ("not in valid date", nextDate(29, 2, 1900));
-    EXPECT_EQ("not in valid date", nextDate(0, 2, 1904));
-    EXPECT_EQ("not in valid date", nextDate(30, 2, 1904));
+    EXPECT_EQ("invalid input date", nextDate(0, 2, 1900));
+    EXPECT_EQ("invalid input date", nextDate(29, 2, 1900));
+    EXPECT_EQ("invalid input date", nextDate(0, 2, 1904));
+    EXPECT_EQ("invalid input date", nextDate(30, 2, 1904));
 }
 
 TEST(Worst_Case_Boundary_Value_Test, Jan) {
@@ -111,9 +111,9 @@ TEST(Worst_Case_Boundary_Value_Test, Feb) {
 	EXPECT_EQ("1,3,2011", nextDate(28, 2, 2011));
 	EXPECT_EQ("29,2,2012", nextDate(28, 2, 2012));
 	EXPECT_EQ("1,3,1812", nextDate(29, 2, 1812));
-	EXPECT_EQ("not in valid date", nextDate(29, 2, 1813));
+	EXPECT_EQ("invalid input date", nextDate(29, 2, 1813));
 	EXPECT_EQ("1,3,1912", nextDate(29, 2, 1912));
-	EXPECT_EQ("not in valid date", nextDate(29, 2, 2011));
+	EXPECT_EQ("invalid input date", nextDate(29, 2, 2011));
 	EXPECT_EQ("1,3,2012", nextDate(29, 2, 2012));
 }
 
@@ -394,5 +394,127 @@ TEST(Worst_Case_Boundary_Value_Test, Dec) {
 	EXPECT_EQ("1,1,1814", nextDate(31, 12, 1813));
 	EXPECT_EQ("1,1,1913", nextDate(31, 12, 1912));
 	EXPECT_EQ("1,1,2012", nextDate(31, 12, 2011));
-	EXPECT_EQ("not in valid date", nextDate(31, 12, 2012));
+	EXPECT_EQ("invalid input date", nextDate(31, 12, 2012));
+}
+
+TEST(Equivalence_Class, weak_normal) {
+	EXPECT_EQ("15,6,2000", nextDate(14, 6, 2000));
+	EXPECT_EQ("30,7,1996", nextDate(29, 7, 1996));
+	EXPECT_EQ("invalid input date", nextDate(30, 2, 2002));
+	EXPECT_EQ("invalid input date", nextDate(31, 6, 2000));
+}
+
+TEST(Equivalence_Class, strong_normal) {
+	EXPECT_EQ("15,6,2000", nextDate(14, 6, 2000));
+	EXPECT_EQ("15,6,1996", nextDate(14, 6, 1996));
+	EXPECT_EQ("15,6,2002", nextDate(14, 6, 2002));
+	EXPECT_EQ("30,6,2000", nextDate(29, 6, 2000));
+	EXPECT_EQ("30,6,1996", nextDate(29, 6, 1996));
+	EXPECT_EQ("30,6,2002", nextDate(29, 6, 2002));
+	EXPECT_EQ("1,7,2000", nextDate(30, 6, 2000));
+	EXPECT_EQ("1,7,1996", nextDate(30, 6, 1996));
+	EXPECT_EQ("1,7,2002", nextDate(30, 6, 2002));
+	EXPECT_EQ("invalid input date", nextDate(31, 6, 2000));
+	EXPECT_EQ("invalid input date", nextDate(31, 6, 1996));
+	EXPECT_EQ("invalid input date", nextDate(31, 6, 2002));
+	EXPECT_EQ("15,7,2000", nextDate(14, 7, 2000));
+	EXPECT_EQ("15,7,1996", nextDate(14, 7, 1996));
+	EXPECT_EQ("15,7,2002", nextDate(14, 7, 2002));
+	EXPECT_EQ("30,7,2000", nextDate(29, 7, 2000));
+	EXPECT_EQ("30,7,1996", nextDate(29, 7, 1996));
+	EXPECT_EQ("30,7,2002", nextDate(29, 7, 2002));
+	EXPECT_EQ("31,7,2000", nextDate(30, 7, 2000));
+	EXPECT_EQ("31,7,1996", nextDate(30, 7, 1996));
+	EXPECT_EQ("31,7,2002", nextDate(30, 7, 2002));
+	EXPECT_EQ("1,8,2000", nextDate(31, 7, 2000));
+	EXPECT_EQ("1,8,1996", nextDate(31, 7, 1996));
+	EXPECT_EQ("1,8,2002", nextDate(31, 7, 2002));
+	EXPECT_EQ("15,2,2000", nextDate(14, 2, 2000));
+	EXPECT_EQ("15,2,1996", nextDate(14, 2, 1996));
+	EXPECT_EQ("15,2,2002", nextDate(14, 2, 2002));
+	EXPECT_EQ("1,3,2000", nextDate(29, 2, 2000));
+	EXPECT_EQ("1,3,1996", nextDate(29, 2, 1996));
+	EXPECT_EQ("invalid input date", nextDate(29, 2, 2002));
+	EXPECT_EQ("invalid input date", nextDate(30, 2, 2000));
+	EXPECT_EQ("invalid input date", nextDate(30, 2, 1996));
+	EXPECT_EQ("invalid input date", nextDate(30, 2, 2002));
+	EXPECT_EQ("invalid input date", nextDate(31, 2, 2000));
+	EXPECT_EQ("invalid input date", nextDate(31, 2, 1996));
+	EXPECT_EQ("invalid input date", nextDate(31, 2, 2002));
+}
+
+TEST(Equivalence_Class, weak_robust) {
+	EXPECT_EQ("invalid input date", nextDate(0, 6, 2000));
+	EXPECT_EQ("invalid input date", nextDate(32, 7, 1996));
+	EXPECT_EQ("invalid input date", nextDate(0, 2, 2002));
+	EXPECT_EQ("invalid input date", nextDate(32, 6, 2000));
+}
+
+TEST(Equivalence_Class, strong_robust) {
+	EXPECT_EQ("invalid input date", nextDate(0, 6, 2000));
+	EXPECT_EQ("invalid input date", nextDate(32, 6, 2000));
+	EXPECT_EQ("invalid input date", nextDate(0, 6, 1996));
+	EXPECT_EQ("invalid input date", nextDate(32, 6, 1996));
+	EXPECT_EQ("invalid input date", nextDate(0, 6, 2002));
+	EXPECT_EQ("invalid input date", nextDate(32, 6, 2002));
+	EXPECT_EQ("invalid input date", nextDate(0, 7, 2000));
+	EXPECT_EQ("invalid input date", nextDate(32, 7, 2000));
+	EXPECT_EQ("invalid input date", nextDate(0, 7, 1996));
+	EXPECT_EQ("invalid input date", nextDate(32, 7, 1996));
+	EXPECT_EQ("invalid input date", nextDate(0, 7, 2002));
+	EXPECT_EQ("invalid input date", nextDate(32, 7, 2002));
+	EXPECT_EQ("invalid input date", nextDate(0, 2, 2000));
+	EXPECT_EQ("invalid input date", nextDate(32, 2, 2000));
+	EXPECT_EQ("invalid input date", nextDate(0, 2, 1996));
+	EXPECT_EQ("invalid input date", nextDate(32, 2, 1996));
+	EXPECT_EQ("invalid input date", nextDate(0, 2, 2002));
+	EXPECT_EQ("invalid input date", nextDate(32, 2, 2002));
+	EXPECT_EQ("invalid input date", nextDate(14, 0, 2000));
+	EXPECT_EQ("invalid input date", nextDate(29, 0, 2000));
+	EXPECT_EQ("invalid input date", nextDate(30, 0, 2000));
+	EXPECT_EQ("invalid input date", nextDate(31, 0, 2000));
+	EXPECT_EQ("invalid input date", nextDate(14, 13, 2000));
+	EXPECT_EQ("invalid input date", nextDate(29, 13, 2000));
+	EXPECT_EQ("invalid input date", nextDate(30, 13, 2000));
+	EXPECT_EQ("invalid input date", nextDate(31, 13, 2000));
+	EXPECT_EQ("invalid input date", nextDate(14, 0, 1996));
+	EXPECT_EQ("invalid input date", nextDate(29, 0, 1996));
+	EXPECT_EQ("invalid input date", nextDate(30, 0, 1996));
+	EXPECT_EQ("invalid input date", nextDate(31, 0, 1996));
+	EXPECT_EQ("invalid input date", nextDate(14, 13, 1996));
+	EXPECT_EQ("invalid input date", nextDate(29, 13, 1996));
+	EXPECT_EQ("invalid input date", nextDate(30, 13, 1996));
+	EXPECT_EQ("invalid input date", nextDate(31, 13, 1996));
+	EXPECT_EQ("invalid input date", nextDate(14, 0, 2002));
+	EXPECT_EQ("invalid input date", nextDate(29, 0, 2002));
+	EXPECT_EQ("invalid input date", nextDate(30, 0, 2002));
+	EXPECT_EQ("invalid input date", nextDate(31, 0, 2002));
+	EXPECT_EQ("invalid input date", nextDate(14, 13, 2002));
+	EXPECT_EQ("invalid input date", nextDate(29, 13, 2002));
+	EXPECT_EQ("invalid input date", nextDate(30, 13, 2002));
+	EXPECT_EQ("invalid input date", nextDate(31, 13, 2002));
+	EXPECT_EQ("invalid input date", nextDate(14, 6, 0));
+	EXPECT_EQ("invalid input date", nextDate(14, 6, 3000));
+	EXPECT_EQ("invalid input date", nextDate(29, 6, 0));
+	EXPECT_EQ("invalid input date", nextDate(29, 6, 3000));
+	EXPECT_EQ("invalid input date", nextDate(30, 6, 0));
+	EXPECT_EQ("invalid input date", nextDate(30, 6, 3000));
+	EXPECT_EQ("invalid input date", nextDate(31, 6, 0));
+	EXPECT_EQ("invalid input date", nextDate(31, 6, 3000));
+	EXPECT_EQ("invalid input date", nextDate(14, 7, 0));
+	EXPECT_EQ("invalid input date", nextDate(14, 7, 3000));
+	EXPECT_EQ("invalid input date", nextDate(29, 7, 0));
+	EXPECT_EQ("invalid input date", nextDate(29, 7, 3000));
+	EXPECT_EQ("invalid input date", nextDate(30, 7, 0));
+	EXPECT_EQ("invalid input date", nextDate(30, 7, 3000));
+	EXPECT_EQ("invalid input date", nextDate(31, 7, 0));
+	EXPECT_EQ("invalid input date", nextDate(31, 7, 3000));
+	EXPECT_EQ("invalid input date", nextDate(14, 2, 0));
+	EXPECT_EQ("invalid input date", nextDate(14, 2, 3000));
+	EXPECT_EQ("invalid input date", nextDate(29, 2, 0));
+	EXPECT_EQ("invalid input date", nextDate(29, 2, 3000));
+	EXPECT_EQ("invalid input date", nextDate(30, 2, 0));
+	EXPECT_EQ("invalid input date", nextDate(30, 2, 3000));
+	EXPECT_EQ("invalid input date", nextDate(31, 2, 0));
+	EXPECT_EQ("invalid input date", nextDate(31, 2, 3000));
 }

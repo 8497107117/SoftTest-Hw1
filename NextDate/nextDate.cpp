@@ -9,17 +9,17 @@ string nextDate(int d, int m, int y) {
     int nd, nm, ny;
 
     if(y < 1812 || y > 2012 || m < 1 || m > 12)
-        return "not in valid date";
+        return "invalid input date";
 
     if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12 ) {
         if(d < 1 || d > 31)
-            return "not in valid date";
+            return "invalid input date";
 
         if(d == 31 && m == 12) {
             nd = 1;
             nm = 1;
             if(y == 2012)
-                return "not in valid date";
+                return "invalid input date";
             else
                 ny = y + 1;
         }
@@ -36,7 +36,7 @@ string nextDate(int d, int m, int y) {
     }
     else if(m != 2) {
         if(d < 1 || d > 30)
-            return "not in valid date";
+            return "invalid input date";
 
         if(d == 30) {
             nd = 1;
@@ -52,7 +52,7 @@ string nextDate(int d, int m, int y) {
     else {
         bool leap = leapyear(y);
         if(d < 1 || (d > 28 && !leap) || (d > 29 && leap))
-            return "not in valid date";
+            return "invalid input date";
 
         if((d == 28 && !leap) || (d == 29 && leap)) {
             nd = 1;
