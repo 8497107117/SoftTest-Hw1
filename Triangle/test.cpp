@@ -204,3 +204,20 @@ TEST(Equivalence_Class, strong_robust) {
     EXPECT_EQ("Value of a,c is not in the range of permitted values", isTriangle(201, 5, 201));
     EXPECT_EQ("Value of a,b,c is not in the range of permitted values", isTriangle(201, 201, 201));
 }
+TEST(Decision_Table, imposible) {
+    //  imposible
+}
+
+TEST(Decision_Table, not_form_a_triangle) {
+	EXPECT_EQ("Not a triangle", isTriangle(4, 1, 2));
+	EXPECT_EQ("Not a triangle", isTriangle(1, 4, 2));
+	EXPECT_EQ("Not a triangle", isTriangle(1, 2, 4));
+}
+
+TEST(Decision_Table, form_a_triangle) {
+	EXPECT_EQ("Equilateral", isTriangle(5, 5, 5));
+	EXPECT_EQ("Isosceles", isTriangle(2, 2, 3));
+	EXPECT_EQ("Isosceles", isTriangle(2, 3, 2));
+	EXPECT_EQ("Isosceles", isTriangle(3, 2, 2));
+	EXPECT_EQ("Scalene", isTriangle(3, 4, 5));
+}
