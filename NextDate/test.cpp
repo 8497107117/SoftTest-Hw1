@@ -518,3 +518,28 @@ TEST(Equivalence_Class, strong_robust) {
 	EXPECT_EQ("invalid input date", nextDate(31, 2, 0));
 	EXPECT_EQ("invalid input date", nextDate(31, 2, 3000));
 }
+
+TEST(Decision_Table, M1) {
+	EXPECT_EQ("16,4,2001", nextDate(15, 4, 2001));
+	EXPECT_EQ("1,5,2001", nextDate(30, 4, 2001));
+	EXPECT_EQ("invalid input date", nextDate(31, 4, 2001));
+}
+
+TEST(Decision_Table, M2) {
+	EXPECT_EQ("16,1,2001", nextDate(15, 1, 2001));
+	EXPECT_EQ("1,2,2001", nextDate(31, 1, 2001));
+}
+
+TEST(Decision_Table, M3) {
+	EXPECT_EQ("16,12,2001", nextDate(15, 12, 2001));
+	EXPECT_EQ("1,1,2002", nextDate(31, 12, 2001));
+}
+
+TEST(Decision_Table, M4) {
+	EXPECT_EQ("16,2,2001", nextDate(15, 2, 2001));
+	EXPECT_EQ("29,2,2004", nextDate(28, 2, 2004));
+	EXPECT_EQ("1,3,2001", nextDate(28, 2, 2001));
+	EXPECT_EQ("1,3,2004", nextDate(29, 2, 2004));
+	EXPECT_EQ("invalid input date", nextDate(29, 2, 2001));
+	EXPECT_EQ("invalid input date", nextDate(30, 2, 2001));
+}
