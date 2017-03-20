@@ -15,7 +15,15 @@ string nextDate(int d, int m, int y) {
         if(d < 1 || d > 31)
             return "not in valid date";
 
-        if(d == 31) {
+        if(d == 31 && m == 12) {
+            nd = 1;
+            nm = 1;
+            if(y == 2012)
+                return "not in valid date";
+            else
+                ny = y + 1;
+        }
+        else if(d == 31) {
             nd = 1;
             nm = m + 1;
             ny = y;
