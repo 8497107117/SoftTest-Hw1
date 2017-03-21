@@ -519,6 +519,60 @@ TEST(Equivalence_Class, strong_robust) {
 	EXPECT_EQ("invalid input date", nextDate(31, 2, 3000));
 }
 
+TEST(Edge_Test, normal) {
+    //  M1 D1
+	EXPECT_EQ("29,11,2000", nextDate(28, 11, 2000));
+	EXPECT_EQ("29,11,2012", nextDate(28, 11, 2012));
+	EXPECT_EQ("29,11,2011", nextDate(28, 11, 2011));
+    //  M1 D2
+	EXPECT_EQ("30,11,2000", nextDate(29, 11, 2000));
+	EXPECT_EQ("30,11,2012", nextDate(29, 11, 2012));
+	EXPECT_EQ("30,11,2011", nextDate(29, 11, 2011));
+    //  M1 D3
+	EXPECT_EQ("1,12,2000", nextDate(30, 11, 2000));
+	EXPECT_EQ("1,12,2012", nextDate(30, 11, 2012));
+	EXPECT_EQ("1,12,2011", nextDate(30, 11, 2011));
+    //  M1 D4
+	EXPECT_EQ("invalid input date", nextDate(31, 11, 2000));
+	EXPECT_EQ("invalid input date", nextDate(31, 11, 2012));
+	EXPECT_EQ("invalid input date", nextDate(31, 11, 2011));
+    //  M2 D1
+	EXPECT_EQ("29,12,2000", nextDate(28, 12, 2000));
+	EXPECT_EQ("29,12,2012", nextDate(28, 12, 2012));
+	EXPECT_EQ("29,12,2011", nextDate(28, 12, 2011));
+    //  M2 D2
+	EXPECT_EQ("30,12,2000", nextDate(29, 12, 2000));
+	EXPECT_EQ("30,12,2012", nextDate(29, 12, 2012));
+	EXPECT_EQ("30,12,2011", nextDate(29, 12, 2011));
+    //  M2 D3
+	EXPECT_EQ("31,12,2000", nextDate(30, 12, 2000));
+	EXPECT_EQ("31,12,2012", nextDate(30, 12, 2012));
+	EXPECT_EQ("31,12,2011", nextDate(30, 12, 2011));
+    //  M2 D4
+	EXPECT_EQ("1,1,2001", nextDate(31, 12, 2000));
+	EXPECT_EQ("not in range", nextDate(31, 12, 2012));
+	EXPECT_EQ("1,1,2012", nextDate(31, 12, 2011));
+    //  M3 D1
+	EXPECT_EQ("29,2,2000", nextDate(28, 2, 2000));
+	EXPECT_EQ("29,2,2012", nextDate(28, 2, 2012));
+	EXPECT_EQ("1,3,2011", nextDate(28, 2, 2011));
+    //  M3 D2
+	EXPECT_EQ("1,3,2000", nextDate(29, 2, 2000));
+	EXPECT_EQ("1,3,2012", nextDate(29, 2, 2012));
+	EXPECT_EQ("invalid input date", nextDate(29, 2, 2011));
+    //  M3 D3
+	EXPECT_EQ("invalid input date", nextDate(30, 2, 2000));
+	EXPECT_EQ("invalid input date", nextDate(30, 2, 2012));
+	EXPECT_EQ("invalid input date", nextDate(30, 2, 2011));
+    //  M3 D4
+	EXPECT_EQ("invalid input date", nextDate(31, 2, 2000));
+	EXPECT_EQ("invalid input date", nextDate(31, 2, 2012));
+	EXPECT_EQ("invalid input date", nextDate(31, 2, 2011));
+}
+
+TEST(Edge_Test, robust) {
+}
+
 TEST(Decision_Table, M1) {
 	EXPECT_EQ("16,4,2001", nextDate(15, 4, 2001));
 	EXPECT_EQ("1,5,2001", nextDate(30, 4, 2001));
