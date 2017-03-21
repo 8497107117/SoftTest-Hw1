@@ -394,7 +394,7 @@ TEST(Worst_Case_Boundary_Value_Test, Dec) {
 	EXPECT_EQ("1,1,1814", nextDate(31, 12, 1813));
 	EXPECT_EQ("1,1,1913", nextDate(31, 12, 1912));
 	EXPECT_EQ("1,1,2012", nextDate(31, 12, 2011));
-	EXPECT_EQ("invalid input date", nextDate(31, 12, 2012));
+	EXPECT_EQ("not in range", nextDate(31, 12, 2012));
 }
 
 TEST(Equivalence_Class, weak_normal) {

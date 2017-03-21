@@ -19,7 +19,7 @@ string nextDate(int d, int m, int y) {
             nd = 1;
             nm = 1;
             if(y == 2012)
-                return "invalid input date";
+                return "not in range";
             else
                 ny = y + 1;
         }
