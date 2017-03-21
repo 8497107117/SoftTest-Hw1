@@ -570,9 +570,6 @@ TEST(Edge_Test, normal) {
 	EXPECT_EQ("invalid input date", nextDate(31, 2, 2011));
 }
 
-TEST(Edge_Test, robust) {
-}
-
 TEST(Decision_Table, M1) {
 	EXPECT_EQ("16,4,2001", nextDate(15, 4, 2001));
 	EXPECT_EQ("1,5,2001", nextDate(30, 4, 2001));
